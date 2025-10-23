@@ -1,5 +1,6 @@
 Navigation Bar Components:
 	- Website Name (maybe with a cool logo or smth)
+	- Tutorial on how to use: https://github.com/PurpleOwl8957/Touhou1ccGrapher/blob/main/README.md
 	- Github Page link: In case someone wants to contribute
 	- Light Mode <-> Dark mode switch
 
@@ -31,4 +32,5 @@ UI components:
 - Main Canvas
 	- Contains all the games
 	- Main interactive area of the page
+
 	- Every game is its own div
