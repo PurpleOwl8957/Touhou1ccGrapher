@@ -8,6 +8,7 @@ UI components:
 	- Add game button
 		- Lets you add games onto an empty canvas
 		- Automatically asks you which shot types you want to include?
+		- Automatically asks you which difficulties you want to include?
 	- Remove game button
 		- Lets you remove the games that exist in the canvas
 	
@@ -15,6 +16,11 @@ UI components:
 		- Makes it so you can add the shot types you want to display instead of cluttering the screen for no reason
 	- Remove shot types
 		- Remove the shot types you dont want in the graphs
+
+	- Add difficulty
+		- Makes it so you can add the difficulties you want to display instead of cluttering the screen for no reason
+	- Remove shot types
+		- Remove the difficulties you dont want in the graphs
 	
 	- The draw modes
 		- 1cc draw: For drawing the connections to indicate 1ccs
@@ -34,3 +40,4 @@ UI components:
 	- Main interactive area of the page
 
 	- Every game is its own div
+
