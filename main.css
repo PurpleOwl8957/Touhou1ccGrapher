@@ -1,0 +1,53 @@
+body {
+	background-color: #121212;
+	color: #ffffff;
+}
+
+.top-nav-bar {
+	height: 50px;
+	width: 100%;
+	
+	position: fixed;
+	z-index: 1;
+	
+	background-color: #355890;
+	
+	top: 0;
+	left: 0;
+	padding: 10px;
+	
+	overflow-y: hidden;
+}
+
+.main-content {
+	height: 100%;
+	width: 80%;
+	
+	display: flex;
+	position: fixed;
+	
+	background-color: #286364;
+	
+	top: 0;
+	left: 0;
+	padding-top: 80px;
+	padding-left: 10px;
+	
+	overflow-y: scroll;
+}
+
+.ui-sidebar {
+	height: 100%;
+	width: 20%;
+	
+	position: fixed;
+	z-index: 1;
+	
+	background-color: #6923ff;
+	
+	top: 0;
+	right: 0;
+	padding: 20px;
+	
+	overflow-x: hidden;
+}
