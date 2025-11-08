@@ -6,7 +6,7 @@ body {
 #top-nav-bar {
 	display: flex;
 	position: fixed;
-	z-index: 1;
+	z-index: -1;
 	
 	background-color: #355890;
 	
@@ -19,7 +19,6 @@ body {
 #top-nav-bar-content {
 	display: flex;
 	position: fixed;
-	z-index: 1;
 	
 	top: 0;
 	left: 0;
@@ -31,13 +30,15 @@ body {
 #main-space {
 	display: flex;
 	position: fixed;
+	z-index: -1;
 	
 	background-color: #286364;
 	
 	bottom: 0;
 	left: 0;
 	
-	overflow-y: hidden;
+	overflow-x: scroll;
+	overflow-y: scroll;
 }
 
 #main-content {
@@ -55,7 +56,7 @@ body {
 #ui-sidebar {
 	display: flex;
 	position: fixed;
-	z-index: 1;
+	z-index: -1;
 	
 	background-color: #6923ff;
 	
@@ -67,7 +68,6 @@ body {
 
 #ui-sidebar-content {
 	position: fixed;
-	z-index: 1;
 	
 	top: 0;
 	right: 0;
