@@ -30,7 +30,7 @@ document.getElementById("ui-sidebar-content").style.width = (ui_sidebar_width - 
 // Setup runs once at the start of the website load
 function setup() {
 	let canvas_width = nav_bar_width * windowWidth * 0.01;
-	let canvas_height = main_space_height * windowHeight * 0.01;
+	let canvas_height = main_space_height * windowHeight * 0.02;
 	
 	console.log(canvas_width, canvas_height);
 	
@@ -39,10 +39,58 @@ function setup() {
 	canvas.parent("main-space");
 }
 
+let cX = 200;
+let cY = 200;
+let cRad = 50;
+
+let selected = false;
+let cursor = {
+	x: null,
+	y: null
+}
+// Get offset for the elements in the graph
+let mainX = 0;
+let mainY = nav_bar_height * document.documentElement.clientHeight * 0.01;
+
+function getMousePos(event) {
+	var e = event || window.event;
+	var scrollX = Math.round(document.getElementById("main-space").scrollLeft || document.body.scrollLeft);
+	var scrollY = Math.round(document.getElementById("main-space").scrollTop || document.body.scrollTop);
+	
+	var x = e.clientX + scrollX || e.pageX;
+	var y = e.clientY + scrollY || e.pageY;
+	return {'x': x, 'y': y};
+}
+
+document.addEventListener("mousedown", function(event) {
+	cursor = getMousePos(event);
+	
+	if (dist(cursor.x, cursor.y, cX + mainX, cY + mainY) < cRad) {
+		selected = true;
+		console.log("True");
+	}
+	
+	console.log("X: " + cursor.x + ", Y: " + cursor.y);
+});
+
+document.addEventListener("mousemove", function(event) {
+	if (!selected) return;
+	cursor = getMousePos(event);
+	cX = cursor.x;
+	cY = cursor.y - cRad;
+});
+
+document.addEventListener("mouseup", function(event) {
+	selected = false;
+});
+
 // Draw runs every frame
+// Drawing the graphs
 function draw() {
-	background('blue');
+	clear();
+	
+	//background('blue');
 	strokeWeight(5);
 	fill(color('red'))
-	circle(200, 200, 100);
+	circle(cX, cY, cRad * 2);
 }
