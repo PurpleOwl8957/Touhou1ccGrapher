@@ -39,18 +39,36 @@ function setup() {
 	canvas.parent("main-space");
 }
 
-let cX = 200;
-let cY = 200;
-let cRad = 50;
+// eosd = {type: "Windows", area: {x: smth, y: smth}, circles: {circle_main: , circle_diff: , circle_shot: }}
+// games = [eosd, pcb, ...];
 
-let selected = false;
+let circle1 = {
+	cX: 200,
+	cY: 200,
+	cRad: 50
+}
+
+let circle2 = {
+	cX: 700,
+	cY: 250,
+	cRad: 100
+}
+
+let circles = {circ1: circle1, circ2: circle2}
+let selected = null;
 let cursor = {
 	x: null,
 	y: null
 }
+
 // Get offset for the elements in the graph
 let mainX = 0;
-let mainY = nav_bar_height * document.documentElement.clientHeight * 0.01;
+let mainY = Math.round(nav_bar_height * document.documentElement.clientHeight * 0.01);
+
+function windowResized() {
+	mainX = 0;
+	mainY = Math.round(nav_bar_height * document.documentElement.clientHeight * 0.01);
+}
 
 function getMousePos(event) {
 	var e = event || window.event;
@@ -65,23 +83,27 @@ function getMousePos(event) {
 document.addEventListener("mousedown", function(event) {
 	cursor = getMousePos(event);
 	
-	if (dist(cursor.x, cursor.y, cX + mainX, cY + mainY) < cRad) {
-		selected = true;
-		console.log("True");
+	for (let circ in circles) {
+		let circle = circles[circ];
+		if (dist(cursor.x, cursor.y, circle.cX + mainX, circle.cY + mainY) < circle.cRad) {
+			selected = circle;
+			console.log(selected);
+		}
 	}
 	
 	console.log("X: " + cursor.x + ", Y: " + cursor.y);
 });
 
 document.addEventListener("mousemove", function(event) {
-	if (!selected) return;
+	if (selected == null) return;
+	
 	cursor = getMousePos(event);
-	cX = cursor.x;
-	cY = cursor.y - cRad;
+	selected.cX = cursor.x;
+	selected.cY = cursor.y - mainY;
 });
 
 document.addEventListener("mouseup", function(event) {
-	selected = false;
+	selected = null;
 });
 
 // Draw runs every frame
@@ -89,8 +111,11 @@ document.addEventListener("mouseup", function(event) {
 function draw() {
 	clear();
 	
-	//background('blue');
-	strokeWeight(5);
-	fill(color('red'))
-	circle(cX, cY, cRad * 2);
+	for (let circ in circles) {
+		let circle_draw = circles[circ];
+		
+		strokeWeight(5);
+		fill(color('red'));
+		circle(circle_draw.cX, circle_draw.cY, circle_draw.cRad * 2);
+	}
 }
